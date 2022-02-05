@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.8-alpine
 RUN apt-get update && apt-get install --yes libgdal-dev
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

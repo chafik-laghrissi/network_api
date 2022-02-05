@@ -24,7 +24,7 @@ API_DESCRIPTION = 'A Web API for analysing traffics.'  # new
 schema_view = get_schema_view(title=API_TITLE)
 
 urlpatterns = [
-    path('docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
+    path('', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
     path('admin/', admin.site.urls),
     path('api/', include('traffics.urls')),
     path('api-auth/', include('rest_framework.urls')),
