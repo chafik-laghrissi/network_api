@@ -7,6 +7,7 @@ class PointSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Point
         geo_field = 'location'
+        id_field = False
         fields = '__all__'
 
 

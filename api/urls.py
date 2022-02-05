@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
-
+from django.conf import settings
+from django.conf.urls.static import static
 API_TITLE = 'Network API'  # new
 API_DESCRIPTION = 'A Web API for analysing traffics.'  # new
 schema_view = get_schema_view(title=API_TITLE)
@@ -29,4 +30,4 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/rest-auth/registration/', include('rest_auth.registration.urls')),
     path('schema/', schema_view)
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
