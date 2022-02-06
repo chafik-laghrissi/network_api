@@ -21,3 +21,7 @@ class TrafficSerializerSatistics(serializers.ModelSerializer):
     class Meta:
         model = Traffic
         fields = ("hour_interval", "collective_transport","particular_transport","haulage")
+class TrafficSerializerSatisticsPerPoint(serializers.ModelSerializer):
+    class Meta:
+        model = Traffic
+        fields = ("id","description", "collective_transport","particular_transport","haulage")
