@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from .permissions import IsAuthorOrReadOnly
 from .models import Point, Traffic
-from .serializers import PointSerializer, TrafficSerializer
+from .serializers import PointSerializer, TrafficSerializer, TrafficSerializerSatistics
 from rest_framework.response import Response
 from rest_framework.request import Request
 # Create your views here.
@@ -39,3 +39,9 @@ class TrafficGroupedByPoint(generics.ListAPIView):
         queryset = Traffic.objects.raw(f'select * from traffics_traffic where point_id={point_id} order by day')
         serializer = TrafficSerializer(queryset, many=True)
         return Response(serializer.data)
+class TrafficStatistics(generics.ListAPIView):
+    queryset = Point.objects.raw('select sum(point_id) as id, hour_interval ,sum(collective_transport) as collective_transport,sum(particular_transport) as particular_transport ,sum(haulage) as haulage from traffics_traffic group by hour_interval')
+    serializer_class = TrafficSerializerSatistics
+    permission_classes = (IsAuthorOrReadOnly,)
+        
+

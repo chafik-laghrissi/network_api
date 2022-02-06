@@ -15,3 +15,9 @@ class TrafficSerializer(serializers.ModelSerializer):
     class Meta:
         model = Traffic
         fields = "__all__"
+
+
+class TrafficSerializerSatistics(serializers.ModelSerializer):
+    class Meta:
+        model = Traffic
+        fields = ("hour_interval", "collective_transport","particular_transport","haulage")
